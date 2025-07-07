@@ -16,7 +16,7 @@ const Navber = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "text-red-500 font-bold" : ""
+            isActive ? "text-[#00aeff] font-bold " : ""
           }
         >
           Home
@@ -26,7 +26,7 @@ const Navber = () => {
         <NavLink
           to="/AvailableFoods"
           className={({ isActive }) =>
-            isActive ? "text-red-500 font-bold" : ""
+            isActive ? "text-[#00aeff] font-bold " : ""
           }
         >
           Apartment
@@ -127,7 +127,7 @@ const Navber = () => {
               <div className="mr-4">
                 <Link
                   to="/auth/login"
-                  className="text-3xl text-gray-700 hover:text-red-600 transition"
+                  className="text-3xl text-gray-700 hover:text-[#00aeff] transition"
                 >
                   <FaUserCircle size={46} />
                 </Link>

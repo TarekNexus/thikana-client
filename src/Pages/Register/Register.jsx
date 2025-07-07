@@ -53,7 +53,7 @@ const Register = () => {
               title: "Registration Complete!",
               text: "You're account registered successfully!",
               confirmButtonText: "Continue",
-              confirmButtonColor: "#d33",
+              confirmButtonColor: "#00aeff",
             });
           })
           .catch((error) => {
@@ -73,7 +73,7 @@ const Register = () => {
           title: "Welcome!",
           text: "You're now logged in with Google.",
           showConfirmButton: true,
-          confirmButtonColor: "#d33",
+          confirmButtonColor: "#00aeff",
           confirmButtonText: "Let's Go!",
         });
         navigate(location.state ? location.state : "/");
@@ -90,7 +90,7 @@ const Register = () => {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
       {/* 🌈 Gradient background */}
-      <div className="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#f44336_100%)]"></div>
+     <div className="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#00aeff_100%)]"></div>
 
       {/* 🎯 Animated card */}
       <motion.div
@@ -122,7 +122,7 @@ const Register = () => {
                 name="name"
                 type="text"
                 placeholder="Enter your name"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-red-600"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-[#00aeff]"
               />
               <motion.input
                 whileFocus={{ scale: 1.02 }}
@@ -130,7 +130,7 @@ const Register = () => {
                 name="photo"
                 type="text"
                 placeholder="Enter your Photo URL"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-red-600"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-[#00aeff]"
               />
               <motion.input
                 whileFocus={{ scale: 1.02 }}
@@ -139,7 +139,7 @@ const Register = () => {
                 type="email"
                 placeholder="Email"
                 autoComplete="username"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-red-600"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-[#00aeff]"
               />
 
               {/* Password input */}
@@ -149,7 +149,7 @@ const Register = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   autoComplete="new-password"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-red-600"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-[#00aeff]"
                 />
                 <span
                   onClick={() => setShowPassword(!showPassword)}
@@ -167,7 +167,7 @@ const Register = () => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition duration-200"
+                className="w-full py-2 bg-[#00aeff] hover:bg-[#0090d1] text-white font-semibold rounded-lg transition duration-200"
               >
                 Register
               </motion.button>
@@ -215,7 +215,7 @@ const Register = () => {
               Already Have An Account?{" "}
               <Link
                 to="/auth/login"
-                className="text-red-600 font-bold hover:underline"
+                className="text-[#00aeff] font-bold hover:underline"
               >
                 Login
               </Link>

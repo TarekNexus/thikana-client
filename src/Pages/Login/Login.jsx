@@ -38,7 +38,7 @@ const Login = () => {
           icon: "success",
           title: "Welcome back!",
           text: "You're now logged in to Thikana.",
-          confirmButtonColor: "#d33",
+          confirmButtonColor: "#00aeff",
           confirmButtonText: "Let's Go!",
         });
       })
@@ -55,7 +55,7 @@ const Login = () => {
           icon: "success",
           title: "Welcome!",
           text: "You're now logged in with Google.",
-          confirmButtonColor: "#d33",
+          confirmButtonColor: "#00aeff",
           confirmButtonText: "Let's Go!",
         });
       })
@@ -70,7 +70,8 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 md:px-8 lg:px-16">
-      <div className="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#f44336_100%)]"></div>
+      <div className="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#00aeff_100%)]"></div>
+
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -81,7 +82,7 @@ const Login = () => {
           <img src={logo} alt="Thikana Logo" className="w-full h-auto object-contain" />
         </div>
 
-        <h1 className="text-center font-bold text-xl mb-2 text-red-600 ">Login</h1>
+        <h1 className="text-center font-bold text-xl mb-2 text-[#00aeff] ">Login</h1>
         <p className="text-center text-gray-600 mb-6 text-sm">
           Manage your apartment, bills & more — log in to continue
         </p>
@@ -95,7 +96,7 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email Address"
-            className="w-full px-4 py-2 text-sm border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-red-600"
+            className="w-full px-4 py-2 text-sm border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-[#00aeff]"
           />
 
           <div className="relative">
@@ -105,7 +106,7 @@ const Login = () => {
               required
               type={showPassword ? "text" : "password"}
               placeholder="Password"
-              className="w-full px-4 py-2 text-sm border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-red-600 pr-10"
+              className="w-full px-4 py-2 text-sm border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-[#00aeff] pr-10"
             />
             <span
               onClick={() => setShowPassword(!showPassword)}
@@ -125,7 +126,7 @@ const Login = () => {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
-            className="w-full bg-red-600 text-white py-2 rounded-full hover:bg-red-700 transition"
+            className="w-full bg-[#00aeff] text-white py-2 rounded-full hover:bg-[#0090d1] transition"
           >
             Login
           </motion.button>
@@ -171,7 +172,7 @@ const Login = () => {
             Don’t have an account?{" "}
             <Link
               to="/auth/register"
-              className="text-red-600 font-semibold hover:underline"
+              className="text-[#00aeff] font-semibold hover:underline"
             >
               Register here
             </Link>
