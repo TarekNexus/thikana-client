@@ -89,9 +89,9 @@ const Navber = () => {
                 <div
                   tabIndex={0}
                   role="button"
-                  className="btn btn-ghost w-14  h-14 btn-circle avatar"
+                  className="btn btn-ghost w-12  h-12 btn-circle avatar"
                 >
-                  <div className="w-14 rounded-full border-2 border-gray-300">
+                  <div className="w-12 rounded-full border-2 border-gray-300">
                     <img
                       referrerPolicy="no-referrer"
                       src={user?.photoURL || ""}

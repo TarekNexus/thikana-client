@@ -122,7 +122,7 @@ const Register = () => {
                 name="name"
                 type="text"
                 placeholder="Enter your name"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-red-400"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-red-600"
               />
               <motion.input
                 whileFocus={{ scale: 1.02 }}
@@ -130,7 +130,7 @@ const Register = () => {
                 name="photo"
                 type="text"
                 placeholder="Enter your Photo URL"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2 focus:ring-red-400"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-red-600"
               />
               <motion.input
                 whileFocus={{ scale: 1.02 }}
@@ -139,7 +139,7 @@ const Register = () => {
                 type="email"
                 placeholder="Email"
                 autoComplete="username"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2 focus:ring-red-400"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-red-600"
               />
 
               {/* Password input */}
@@ -149,7 +149,7 @@ const Register = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   autoComplete="new-password"
-                  className="w-full px-4 py-2 border rounded-lg focus:border-none  focus:outline-none focus:ring-2 focus:ring-red-400 pr-10"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-red-600"
                 />
                 <span
                   onClick={() => setShowPassword(!showPassword)}
