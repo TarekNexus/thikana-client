@@ -24,7 +24,7 @@ const ApartmentLocation = () => {
   }, []);
 
   return (
-    <section className="py-16 w-11/12 mx-auto">
+    <section className="py-16 px-4 w-11/12 mx-auto ">
       <div className="text-center mb-12">
         <h2 className="text-3xl font-extrabold text-[#00aeff] mb-3">
           Apartment Locations & How to Get There
@@ -52,7 +52,7 @@ const ApartmentLocation = () => {
           center={[23.8103, 90.4125]} // Dhaka center
           zoom={7}
           scrollWheelZoom={false}
-          style={{ height: "600px", width: "100%" }}
+          style={{ height: "600px", width: "100%", zIndex: 0  }}
         >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           {locations.map((loc, idx) => (

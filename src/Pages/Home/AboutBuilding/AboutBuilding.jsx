@@ -5,8 +5,8 @@ import buildingImage from "../../../assets/tt.jpeg"; // use your actual image pa
 
 const AboutBuilding = () => {
   return (
-    <section className="py-16 w-11/12 sm:px-8 md:px-12 lg:px-10 mx-auto">
-      <div class="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#00aeff_100%)]"></div>
+    <section className="py-16 w-11/12 px-4 mx-auto">
+      <div className="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#00aeff_100%)]"></div>
 
       {/* Title & Subtitle */}
       <motion.div

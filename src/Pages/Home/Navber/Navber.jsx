@@ -48,8 +48,9 @@ const Navber = () => {
 
   return (
     <nav className="sticky top-0 z-20">
-      <div className="navbar w-full px-4 sm:px-8 md:px-12 lg:px-28 mx-auto border-b border-gray-200 bg-white/20 backdrop-blur-sm">
-        <div className="navbar-start">
+      <div className=" w-full mx-auto  border-b border-gray-200 bg-white/20 backdrop-blur-sm">
+    <div className="w-11/12 mx-auto navbar">
+          <div className="navbar-start ">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -135,6 +136,7 @@ const Navber = () => {
             </>
           )}
         </div>
+    </div>
       </div>
     </nav>
   );
