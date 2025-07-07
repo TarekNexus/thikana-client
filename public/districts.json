@@ -1,0 +1,450 @@
+[
+  {
+    "name": "Bagerhat",
+    "position": [22.661, 89.7919],
+    "address": "Bagerhat, Khulna",
+    "description": "Historic district with UNESCO sites.",
+    "howToGetThere": "Accessible via Khulna-Bagerhat road and local buses."
+  },
+  {
+    "name": "Bandarban",
+    "position": [22.1957, 92.2182],
+    "address": "Bandarban, Chittagong",
+    "description": "Hilly district known for scenic beauty.",
+    "howToGetThere": "Reachable via Chittagong city by bus or jeep."
+  },
+  {
+    "name": "Barguna",
+    "position": [22.181, 90.2164],
+    "address": "Barguna, Barisal",
+    "description": "Coastal district with riverine landscape.",
+    "howToGetThere": "Accessible via Barisal-Barguna road."
+  },
+  {
+    "name": "Barisal",
+    "position": [22.701, 90.3535],
+    "address": "Barisal city",
+    "description": "Major city in southern Bangladesh.",
+    "howToGetThere": "Served by Barisal Airport and river transport."
+  },
+  {
+    "name": "Bhola",
+    "position": [22.6857, 90.62],
+    "address": "Bhola island",
+    "description": "Largest island district in Bangladesh.",
+    "howToGetThere": "Reachable by ferry and road transport."
+  },
+  {
+    "name": "Bogra",
+    "position": [24.8479, 89.3716],
+    "address": "Bogra city",
+    "description": "Important city in Rajshahi division.",
+    "howToGetThere": "Well connected by road and rail."
+  },
+  {
+    "name": "Brahmanbaria",
+    "position": [23.9633, 91.1289],
+    "address": "Brahmanbaria city",
+    "description": "District in Chittagong division.",
+    "howToGetThere": "Accessible by road and rail."
+  },
+  {
+    "name": "Chandpur",
+    "position": [23.2437, 91.6606],
+    "address": "Chandpur city",
+    "description": "District at the confluence of rivers.",
+    "howToGetThere": "Connected via highways and river routes."
+  },
+  {
+    "name": "Chapai Nawabganj",
+    "position": [24.7047, 88.2467],
+    "address": "Chapai Nawabganj city",
+    "description": "Western district near India border.",
+    "howToGetThere": "Accessible via Rajshahi road networks."
+  },
+  {
+    "name": "Chattogram",
+    "position": [22.3569, 91.7832],
+    "address": "Chittagong city",
+    "description": "Port city and commercial hub.",
+    "howToGetThere": "Served by airport, seaport, and rail."
+  },
+  {
+    "name": "Chuadanga",
+    "position": [23.6374, 88.841],
+    "address": "Chuadanga city",
+    "description": "District in Khulna division.",
+    "howToGetThere": "Connected by road to Kushtia and Jashore."
+  },
+  {
+    "name": "Comilla",
+    "position": [23.4608, 91.1809],
+    "address": "Comilla city",
+    "description": "Historic district in Chittagong division.",
+    "howToGetThere": "Well connected by highways and rail."
+  },
+  {
+    "name": "Cox's Bazar",
+    "position": [21.4272, 92.0058],
+    "address": "Cox's Bazar city",
+    "description": "Famous for the world's longest sea beach.",
+    "howToGetThere": "Served by airport and bus."
+  },
+  {
+    "name": "Dhaka",
+    "position": [23.8103, 90.4125],
+    "address": "Dhaka city",
+    "description": "Capital and largest city of Bangladesh.",
+    "howToGetThere": "Well connected by all transport modes."
+  },
+  {
+    "name": "Dinajpur",
+    "position": [25.6271, 88.6354],
+    "address": "Dinajpur city",
+    "description": "Northern district known for agriculture.",
+    "howToGetThere": "Accessible via road and rail."
+  },
+  {
+    "name": "Faridpur",
+    "position": [23.6072, 89.8403],
+    "address": "Faridpur city",
+    "description": "District in Dhaka division.",
+    "howToGetThere": "Connected by road networks."
+  },
+  {
+    "name": "Feni",
+    "position": [22.882, 91.4039],
+    "address": "Feni city",
+    "description": "District in Chittagong division.",
+    "howToGetThere": "Accessible via highway from Chittagong."
+  },
+  {
+    "name": "Gaibandha",
+    "position": [25.3944, 89.5276],
+    "address": "Gaibandha city",
+    "description": "Northern district with river systems.",
+    "howToGetThere": "Well connected by road."
+  },
+  {
+    "name": "Gazipur",
+    "position": [23.9996, 90.4203],
+    "address": "Gazipur city",
+    "description": "Industrial city near Dhaka.",
+    "howToGetThere": "Accessible via highway and rail."
+  },
+  {
+    "name": "Gopalganj",
+    "position": [23.0056, 89.8264],
+    "address": "Gopalganj city",
+    "description": "District in Dhaka division.",
+    "howToGetThere": "Connected by road to Dhaka."
+  },
+  {
+    "name": "Habiganj",
+    "position": [24.3787, 91.4164],
+    "address": "Habiganj city",
+    "description": "District in Sylhet division.",
+    "howToGetThere": "Accessible by road from Sylhet."
+  },
+  {
+    "name": "Jamalpur",
+    "position": [24.9378, 89.9384],
+    "address": "Jamalpur city",
+    "description": "District in Mymensingh division.",
+    "howToGetThere": "Well connected by road and rail."
+  },
+  {
+    "name": "Jashore",
+    "position": [23.1695, 89.2149],
+    "address": "Jashore city",
+    "description": "District in Khulna division.",
+    "howToGetThere": "Accessible by road and rail."
+  },
+  {
+    "name": "Jhalokati",
+    "position": [22.6724, 90.196],
+    "address": "Jhalokati city",
+    "description": "District in Barisal division.",
+    "howToGetThere": "Connected by road from Barisal."
+  },
+  {
+    "name": "Jhenaidah",
+    "position": [23.5443, 89.1547],
+    "address": "Jhenaidah city",
+    "description": "District in Khulna division.",
+    "howToGetThere": "Well connected by road."
+  },
+  {
+    "name": "Joypurhat",
+    "position": [25.0967, 89.029],
+    "address": "Joypurhat city",
+    "description": "Northern district.",
+    "howToGetThere": "Accessible by road and rail."
+  },
+  {
+    "name": "Khagrachari",
+    "position": [23.1204, 91.9992],
+    "address": "Khagrachari city",
+    "description": "Hill district in Chittagong division.",
+    "howToGetThere": "Reachable by road from Chittagong."
+  },
+  {
+    "name": "Khulna",
+    "position": [22.8456, 89.5403],
+    "address": "Khulna city",
+    "description": "Major city in southwestern Bangladesh.",
+    "howToGetThere": "Served by road, rail, and river transport."
+  },
+  {
+    "name": "Kishoreganj",
+    "position": [24.4236, 90.7763],
+    "address": "Kishoreganj city",
+    "description": "District in Dhaka division.",
+    "howToGetThere": "Accessible via road."
+  },
+  {
+    "name": "Kurigram",
+    "position": [25.801, 89.6456],
+    "address": "Kurigram city",
+    "description": "Northern district with rivers.",
+    "howToGetThere": "Connected by road."
+  },
+  {
+    "name": "Kushtia",
+    "position": [23.901, 89.1204],
+    "address": "Kushtia city",
+    "description": "District in Khulna division.",
+    "howToGetThere": "Well connected by road and rail."
+  },
+  {
+    "name": "Lakshmipur",
+    "position": [22.9506, 90.8376],
+    "address": "Lakshmipur city",
+    "description": "District in Chittagong division.",
+    "howToGetThere": "Accessible via road."
+  },
+  {
+    "name": "Lalmonirhat",
+    "position": [26.0276, 89.2149],
+    "address": "Lalmonirhat city",
+    "description": "Northern district.",
+    "howToGetThere": "Connected by rail and road."
+  },
+  {
+    "name": "Madaripur",
+    "position": [23.1742, 90.1879],
+    "address": "Madaripur city",
+    "description": "District in Dhaka division.",
+    "howToGetThere": "Accessible by road."
+  },
+  {
+    "name": "Magura",
+    "position": [23.4873, 89.4192],
+    "address": "Magura city",
+    "description": "District in Khulna division.",
+    "howToGetThere": "Well connected by road."
+  },
+  {
+    "name": "Manikganj",
+    "position": [23.8676, 90.0054],
+    "address": "Manikganj city",
+    "description": "District in Dhaka division.",
+    "howToGetThere": "Accessible via road."
+  },
+  {
+    "name": "Meherpur",
+    "position": [23.72, 88.633],
+    "address": "Meherpur city",
+    "description": "District in Khulna division.",
+    "howToGetThere": "Connected by road."
+  },
+  {
+    "name": "Moulvibazar",
+    "position": [24.4867, 91.7804],
+    "address": "Moulvibazar city",
+    "description": "District in Sylhet division.",
+    "howToGetThere": "Accessible by road."
+  },
+  {
+    "name": "Munshiganj",
+    "position": [23.5512, 90.4992],
+    "address": "Munshiganj city",
+    "description": "District near Dhaka.",
+    "howToGetThere": "Connected by road."
+  },
+  {
+    "name": "Mymensingh",
+    "position": [24.7471, 90.4203],
+    "address": "Mymensingh city",
+    "description": "District and divisional city.",
+    "howToGetThere": "Well connected by road and rail."
+  },
+  {
+    "name": "Naogaon",
+    "position": [24.8228, 88.9457],
+    "address": "Naogaon city",
+    "description": "Northern district.",
+    "howToGetThere": "Accessible via road."
+  },
+  {
+    "name": "Narail",
+    "position": [23.1722, 89.5358],
+    "address": "Narail city",
+    "description": "District in Khulna division.",
+    "howToGetThere": "Connected by road."
+  },
+  {
+    "name": "Narayanganj",
+    "position": [23.6275, 90.5],
+    "address": "Narayanganj city",
+    "description": "Industrial city near Dhaka.",
+    "howToGetThere": "Accessible via road and river."
+  },
+  {
+    "name": "Narsingdi",
+    "position": [23.9267, 90.7187],
+    "address": "Narsingdi city",
+    "description": "District near Dhaka.",
+    "howToGetThere": "Connected by road."
+  },
+  {
+    "name": "Natore",
+    "position": [24.415, 89.0371],
+    "address": "Natore city",
+    "description": "District in Rajshahi division.",
+    "howToGetThere": "Accessible via road."
+  },
+  {
+    "name": "Netrokona",
+    "position": [24.8796, 90.7193],
+    "address": "Netrokona city",
+    "description": "Northern district.",
+    "howToGetThere": "Well connected by road."
+  },
+  {
+    "name": "Nilphamari",
+    "position": [25.9401, 88.8467],
+    "address": "Nilphamari city",
+    "description": "Northern district.",
+    "howToGetThere": "Accessible via road and rail."
+  },
+  {
+    "name": "Noakhali",
+    "position": [22.824, 91.108],
+    "address": "Noakhali city",
+    "description": "District in Chittagong division.",
+    "howToGetThere": "Connected by road and rail."
+  },
+  {
+    "name": "Pabna",
+    "position": [24.0067, 89.234],
+    "address": "Pabna city",
+    "description": "District in Rajshahi division.",
+    "howToGetThere": "Well connected by road and rail."
+  },
+  {
+    "name": "Panchagarh",
+    "position": [26.3352, 88.5575],
+    "address": "Panchagarh city",
+    "description": "Northernmost district.",
+    "howToGetThere": "Accessible via road."
+  },
+  {
+    "name": "Patuakhali",
+    "position": [22.3639, 90.326],
+    "address": "Patuakhali city",
+    "description": "District in Barisal division.",
+    "howToGetThere": "Connected by road and river."
+  },
+  {
+    "name": "Pirojpur",
+    "position": [22.578, 89.97],
+    "address": "Pirojpur city",
+    "description": "District in Barisal division.",
+    "howToGetThere": "Accessible by road."
+  },
+  {
+    "name": "Rajbari",
+    "position": [23.7167, 89.7919],
+    "address": "Rajbari city",
+    "description": "District in Dhaka division.",
+    "howToGetThere": "Connected via road."
+  },
+  {
+    "name": "Rajshahi",
+    "position": [24.3745, 88.6042],
+    "address": "Rajshahi city",
+    "description": "Major city in Rajshahi division.",
+    "howToGetThere": "Well connected by road and rail."
+  },
+  {
+    "name": "Rangamati",
+    "position": [22.6589, 92.183],
+    "address": "Rangamati city",
+    "description": "Hill district in Chittagong division.",
+    "howToGetThere": "Reachable by road from Chittagong."
+  },
+  {
+    "name": "Rangpur",
+    "position": [25.7439, 89.2752],
+    "address": "Rangpur city",
+    "description": "City in northern Bangladesh.",
+    "howToGetThere": "Accessible by road and rail."
+  },
+  {
+    "name": "Satkhira",
+    "position": [22.7145, 89.088],
+    "address": "Satkhira city",
+    "description": "District in Khulna division.",
+    "howToGetThere": "Connected by road."
+  },
+  {
+    "name": "Shariatpur",
+    "position": [23.2415, 90.6653],
+    "address": "Shariatpur city",
+    "description": "District in Dhaka division.",
+    "howToGetThere": "Accessible via road."
+  },
+  {
+    "name": "Sherpur",
+    "position": [25.0285, 90.007],
+    "address": "Sherpur city",
+    "description": "District in Mymensingh division.",
+    "howToGetThere": "Connected by road."
+  },
+  {
+    "name": "Sirajganj",
+    "position": [24.4493, 89.7004],
+    "address": "Sirajganj city",
+    "description": "District in Rajshahi division.",
+    "howToGetThere": "Well connected by road and rail."
+  },
+  {
+    "name": "Sunamganj",
+    "position": [25.0656, 91.3954],
+    "address": "Sunamganj city",
+    "description": "District in Sylhet division.",
+    "howToGetThere": "Accessible by road."
+  },
+  {
+    "name": "Sylhet",
+    "position": [24.8949, 91.8687],
+    "address": "Sylhet city",
+    "description": "Major city in northeast Bangladesh.",
+    "howToGetThere": "Served by airport and road."
+  },
+  {
+    "name": "Tangail",
+    "position": [24.251, 89.9164],
+    "address": "Tangail city",
+    "description": "District in Dhaka division.",
+    "howToGetThere": "Connected by road and rail."
+  },
+  {
+    "name": "Thakurgaon",
+    "position": [26.0336, 88.4463],
+    "address": "Thakurgaon city",
+    "description": "Northern district.",
+    "howToGetThere": "Accessible via road."
+  }
+]
