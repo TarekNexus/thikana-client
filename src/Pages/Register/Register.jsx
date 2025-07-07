@@ -1,9 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-
 import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { updateProfile } from "firebase/auth";
 import { AuthContext } from "../../Provider/AuthContext";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion"; // ✅ import motion
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { createUser, setUser, signInWithGoogle } = useContext(AuthContext);
@@ -23,6 +26,7 @@ const Register = () => {
       toast.error("Please fill in all fields.");
       return;
     }
+
     const hasUppercase = /[A-Z]/.test(password);
     const hasLowercase = /[a-z]/.test(password);
     const isLongEnough = password.length >= 6;
@@ -44,7 +48,13 @@ const Register = () => {
           .then(() => {
             setUser({ ...user, displayName: name, photoURL: photo });
             navigate(location.state ? location.state : "/");
-            toast.success("Registration successful");
+            Swal.fire({
+              icon: "success",
+              title: "Registration Complete!",
+              text: "You're account registered successfully!",
+              confirmButtonText: "Continue",
+              confirmButtonColor: "#d33",
+            });
           })
           .catch((error) => {
             toast.error("Failed to update profile: " + error.message);
@@ -58,7 +68,14 @@ const Register = () => {
   const handleLoginWithGoogle = () => {
     signInWithGoogle()
       .then(() => {
-        toast.success(" successful login");
+        Swal.fire({
+          icon: "success",
+          title: "Welcome!",
+          text: "You're now logged in with Google.",
+          showConfirmButton: true,
+          confirmButtonColor: "#d33",
+          confirmButtonText: "Let's Go!",
+        });
         navigate(location.state ? location.state : "/");
       })
       .catch((error) => {
@@ -71,10 +88,23 @@ const Register = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center   p-4">
-      <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
-        <div className="px-8 py-6">
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      {/* 🌈 Gradient background */}
+      <div className="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#f44336_100%)]"></div>
+
+      {/* 🎯 Animated card */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9, y: 50 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden"
+      >
+        <motion.div
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="px-8 py-6"
+        >
           <div className="text-center mb-6">
             <h2 className="text-2xl font-bold text-gray-800">
               Register your Account
@@ -83,52 +113,72 @@ const Register = () => {
               It’s free and only takes a minute
             </p>
           </div>
+
           <form onSubmit={handleRegister}>
             <div className="space-y-4">
-              <input
+              <motion.input
+                whileFocus={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
                 name="name"
                 type="text"
                 placeholder="Enter your name"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-red-400"
               />
-              <input
+              <motion.input
+                whileFocus={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
                 name="photo"
                 type="text"
                 placeholder="Enter your Photo URL"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2 focus:ring-red-400"
               />
-              <input
+              <motion.input
+                whileFocus={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
                 name="email"
                 type="email"
                 placeholder="Email"
                 autoComplete="username"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2 focus:ring-red-400"
               />
+
+              {/* Password input */}
               <div className="relative">
                 <input
                   name="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   autoComplete="new-password"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 pr-10"
+                  className="w-full px-4 py-2 border rounded-lg focus:border-none  focus:outline-none focus:ring-2 focus:ring-red-400 pr-10"
                 />
                 <span
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
+                  className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer text-gray-500"
                 >
-                  {showPassword ? "👁️" : "🙈"}
+                  {showPassword ? (
+                    <FaEyeSlash size={18} />
+                  ) : (
+                    <FaEye size={18} />
+                  )}
                 </span>
               </div>
-              <button
+
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
                 type="submit"
                 className="w-full py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition duration-200"
               >
                 Register
-              </button>
-              <button
+              </motion.button>
+
+              {/* Google button */}
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
                 type="button"
                 onClick={handleLoginWithGoogle}
-                className="btn bg-white w-full rounded-full text-black border-[#e5e5e5] mt-4"
+                className="flex items-center justify-center gap-3 btn bg-white w-full rounded-full text-black border-[#e5e5e5] mt-2"
               >
                 <svg
                   aria-label="Google logo"
@@ -158,8 +208,9 @@ const Register = () => {
                   </g>
                 </svg>
                 Login with Google
-              </button>
+              </motion.button>
             </div>
+
             <p className="text-sm text-center text-gray-600 mt-5">
               Already Have An Account?{" "}
               <Link
@@ -170,8 +221,8 @@ const Register = () => {
               </Link>
             </p>
           </form>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
