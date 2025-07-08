@@ -19,6 +19,7 @@ import ManageCoupons from "../Pages/Dashboard/Admin/ManageCoupons";
 import AgreementRequests from "../Pages/Dashboard/Admin/AgreementRequests";
 import MakeAnnouncement from "../Pages/Dashboard/Admin/MakeAnnouncement";
 import MemberProfile from "../Pages/Dashboard/Member/MemberProfile";
+import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +52,11 @@ export const router = createBrowserRouter([
   element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
   children: [
     // User
+ {
+        index:true,
+        Component:DashboardHome
+      },
+
     { path: "profile", element: <UserProfile /> },
     { path: "announcements", element: <UserAnnouncements /> },
 
