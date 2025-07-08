@@ -2,39 +2,45 @@ import React from 'react';
 import useMyAgreement from '../../../Hooks/useMyAgreement';
 import useAuth from '../../../Hooks/useAuth';
 
-
-
 const UserProfile = () => {
   const { user } = useAuth();
-  const { agreement, loading } = useMyAgreement();
+  const { agreement,  } = useMyAgreement();
 
-  if (loading) return <p>Loading...</p>;
+  
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white rounded shadow">
-      <h2 className="text-2xl font-bold mb-4">My Profile</h2>
-
-      <div className="flex items-center gap-4 mb-4">
-        <img
-          src={user?.photoURL}
-          alt="User"
-          className="w-20 h-20 rounded-full border"
-        />
-        <div>
-          <h3 className="text-xl font-semibold">{user?.displayName}</h3>
-          <p className="text-gray-600">{user?.email}</p>
+    <div className=" py-10 px-4">
+      
+      <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
+        <div className="bg-[#00aeff] p-8 text-white flex flex-col md:flex-row items-center gap-6">
+          <img
+            src={user?.photoURL}
+            alt="User"
+            className="w-28 h-28 rounded-full border-4 border-white shadow-lg"
+          />
+          <div className="text-center md:text-left">
+            <h2 className="text-3xl font-bold">{user?.displayName}</h2>
+            <p className="text-sm opacity-90">{user?.email}</p>
+          </div>
         </div>
-      </div>
 
-      <div>
-        <p><strong>Agreement Accepted Date:</strong> {agreement?.createdAt ? new Date(agreement.createdAt).toLocaleDateString() : "none"}</p>
-        <p><strong>Floor:</strong> {agreement?.floorNo || "none"}</p>
-        <p><strong>Block:</strong> {agreement?.blockName || "none"}</p>
-        <p><strong>Room:</strong> {agreement?.apartmentNo || "none"}</p>
-        <p><strong>Rent:</strong> {agreement?.rent ? `৳${agreement.rent}` : "none"}</p>
+        <div className="p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 bg-white text-gray-700">
+          <InfoCard title="Agreement Date" value={agreement?.createdAt ? new Date(agreement.createdAt).toLocaleDateString() : "none"} />
+          <InfoCard title="Floor No" value={agreement?.floorNo || "none"} />
+          <InfoCard title="Block Name" value={agreement?.blockName || "none"} />
+          <InfoCard title="Room No" value={agreement?.apartmentNo || "none"} />
+          <InfoCard title="Rent" value={agreement?.rent ? `৳${agreement.rent}` : "none"} />
+        </div>
       </div>
     </div>
   );
 };
+
+const InfoCard = ({ title, value }) => (
+  <div className="bg-[#f9fafe] p-5 rounded-xl shadow-sm border hover:shadow-md transition-all duration-200">
+    <p className="text-sm text-[#00aeff] font-semibold mb-1">{title}</p>
+    <p className="text-lg font-medium text-gray-800">{value}</p>
+  </div>
+);
 
 export default UserProfile;

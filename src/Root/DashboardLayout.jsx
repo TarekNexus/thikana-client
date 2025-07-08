@@ -47,21 +47,35 @@ const DashboardLayout = () => {
       </div>
 
       {/* Sidebar */}
-      <div className="drawer-side">
+      <div className="drawer-side ">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content space-y-2">
+        <ul className="menu p-4  w-80 min-h-full bg-base-200 text-base-content  space-y-2">
           {/* Logo */}
           <Link to="/" className="mb-4">
-            <img src={logo} alt="Logo" className="w-40 mx-auto" />
+            <img src={logo} alt="Logo" className="w-40 " />
           </Link>
 
           {role === "user" && (
             <>
               <li>
-                <NavLink to="/dashboard/profile">My Profile</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-[#00aeff] " : ""
+                  }
+                  to="/dashboard/profile"
+                >
+                  My Profile
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/announcements">Announcements</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-[#00aeff] " : ""
+                  }
+                  to="/dashboard/announcements"
+                >
+                  Announcements
+                </NavLink>
               </li>
             </>
           )}
@@ -69,18 +83,44 @@ const DashboardLayout = () => {
           {role === "member" && (
             <>
               <li>
-                <NavLink to="/dashboard/memberProfile">My Profile</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-[#00aeff] " : ""
+                  }
+                  to="/dashboard/memberProfile"
+                >
+                  My Profile
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/make-payment">Make Payment</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-[#00aeff] " : ""
+                  }
+                  to="/dashboard/make-payment"
+                >
+                  Make Payment
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/payment-history">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-[#00aeff] " : ""
+                  }
+                  to="/dashboard/payment-history"
+                >
                   Payment History
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/announcements">Announcements</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-[#00aeff] " : ""
+                  }
+                  to="/dashboard/announcements"
+                >
+                  Announcements
+                </NavLink>
               </li>
             </>
           )}
@@ -88,23 +128,54 @@ const DashboardLayout = () => {
           {role === "admin" && (
             <>
               <li>
-                <NavLink to="/dashboard/admin-profile">Admin Profile</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-[#00aeff] " : ""
+                  }
+                  to="/dashboard/admin-profile"
+                >
+                  Admin Profile
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manage-members">Manage Members</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-[#00aeff] " : ""
+                  }
+                  to="/dashboard/manage-members"
+                >
+                  Manage Members
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/make-announcement">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-[#00aeff] " : ""
+                  }
+                  to="/dashboard/make-announcement"
+                >
                   Make Announcement
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/agreement-requests">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-[#00aeff] " : ""
+                  }
+                  to="/dashboard/agreement-requests"
+                >
                   Agreement Requests
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manage-coupons">Manage Coupons</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-[#00aeff] " : ""
+                  }
+                  to="/dashboard/manage-coupons"
+                >
+                  Manage Coupons
+                </NavLink>
               </li>
             </>
           )}
