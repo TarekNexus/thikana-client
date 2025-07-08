@@ -74,7 +74,7 @@ export const router = createBrowserRouter([
     // Member
     { path: "make-payment", element: <MemberRoute><MakePayment /></MemberRoute> },
     { path: "payment-history", element: <MemberRoute><PaymentHistory /></MemberRoute> },
-    { path: "announcements", element: <MemberRoute><MemberAnnouncements /></MemberRoute> },
+    { path: "MemberAnnouncements", element: <MemberRoute><MemberAnnouncements /></MemberRoute> },
     { path: "memberProfile", element: <MemberRoute><MemberProfile /></MemberRoute> },
 
     // Admin

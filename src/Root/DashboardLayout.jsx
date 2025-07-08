@@ -117,7 +117,7 @@ const DashboardLayout = () => {
                   className={({ isActive }) =>
                     isActive ? "text-[#00aeff] " : ""
                   }
-                  to="/dashboard/announcements"
+                  to="/dashboard/MemberAnnouncements"
                 >
                   Announcements
                 </NavLink>
