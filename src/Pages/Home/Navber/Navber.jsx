@@ -86,7 +86,10 @@ const Navber = () => {
                 {Links}
               </ul>
             </div>
-            <img className="w-30 md:w-40" src={logo} alt="Logo" />
+            <Link to="/">
+              {" "}
+              <img className="w-30 md:w-40" src={logo} alt="Logo" />
+            </Link>
           </div>
 
           <div className="navbar-center hidden lg:flex">
@@ -139,12 +142,18 @@ const Navber = () => {
               </>
             ) : (
               <>
-                <div className="mr-4">
+                <div className="mr-4 flex gap-4">
                   <Link
                     to="/auth/login"
                     className="text-3xl text-gray-700 hover:text-[#00aeff] transition"
                   >
                     <FaUserCircle size={46} />
+                  </Link>
+
+                  <Link to="/auth/login" className="">
+                    <button className="btn w-22 h-11 hidden md:block hover:bg-[#0090d1] transition bg-[#00aeff] text-white rounded-3xl">
+                      Login
+                    </button>
                   </Link>
                 </div>
               </>
