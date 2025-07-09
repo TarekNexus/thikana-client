@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 const MakeAnnouncement = () => {
+   useEffect(() => {
+    document.title = "Announcement | Thikana";
+  }, []);
   const [formData, setFormData] = useState({
     title: "",
     description: "",

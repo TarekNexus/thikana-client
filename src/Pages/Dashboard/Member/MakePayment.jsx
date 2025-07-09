@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useMyAgreement from "../../../Hooks/useMyAgreement";
 import useAuth from "../../../Hooks/useAuth";
@@ -6,6 +6,9 @@ import useAuth from "../../../Hooks/useAuth";
 const primaryColor = "#00aeff";
 
 const MakePayment = () => {
+     useEffect(() => {
+    document.title = "Make Payment | Thikana";
+  }, []);
   const { user } = useAuth();
   const { agreement, loading } = useMyAgreement();
   const navigate = useNavigate();

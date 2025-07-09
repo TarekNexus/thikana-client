@@ -83,8 +83,8 @@ const Register = () => {
       });
   };
 
-  useEffect(() => {
-    document.title = "Register | FOOD KING";
+    useEffect(() => {
+    document.title = "Register | Thikana";
   }, []);
 
   return (

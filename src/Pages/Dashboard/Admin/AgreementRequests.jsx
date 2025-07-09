@@ -2,10 +2,13 @@
 
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
 
 const AgreementRequests = () => {
+   useEffect(() => {
+    document.title = "Agreement Requests | Thikana";
+  }, []);
   const {user}=useAuth()
   const [loadingEmail, setLoadingEmail] = useState(null);
 

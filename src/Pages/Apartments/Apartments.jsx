@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Apartments = () => {
+
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -78,6 +79,9 @@ const Apartments = () => {
       );
     }
   };
+ useEffect(() => {
+    document.title = "Apartment | Thikana";
+  }, []);
 
   return (
     <div className="w-11/12 mx-auto p-4">

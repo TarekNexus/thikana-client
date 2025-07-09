@@ -4,6 +4,9 @@ import useAuth from "../../../Hooks/useAuth";
 
 
 const PaymentHistory = () => {
+     useEffect(() => {
+    document.title = "Payment History | Thikana";
+  }, []);
   const { user } = useAuth();
   const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);

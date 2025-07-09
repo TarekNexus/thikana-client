@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useMyAgreement from '../../../Hooks/useMyAgreement';
 import useAuth from '../../../Hooks/useAuth';
 
 const UserProfile = () => {
+   useEffect(() => {
+    document.title = "Profile | Thikana";
+  }, []);
   const { user } = useAuth();
   const { agreement,  } = useMyAgreement();
 

@@ -6,6 +6,9 @@ import useAuth from "../../../Hooks/useAuth";
 const primaryColor = "#00aeff";
 
 const AdminProfile = () => {
+   useEffect(() => {
+    document.title = "Admin Profile | Thikana";
+  }, []);
   const [admin, setAdmin] = useState(null);
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);

@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 
 const ManageMembers = () => {
+   useEffect(() => {
+    document.title = "Manage Members | Thikana";
+  }, []);
   const {user}=useAuth()
   const queryClient = useQueryClient();
   const [loadingEmail, setLoadingEmail] = useState(null);

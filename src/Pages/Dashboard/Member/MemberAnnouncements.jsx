@@ -2,8 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Megaphone } from "lucide-react";
 import useAuth from "../../../Hooks/useAuth";
+import { useEffect } from "react";
 
 const MemberAnnouncements = () => {
+     useEffect(() => {
+    document.title = "Announcements | Thikana";
+  }, []);
   const {user}=useAuth()
   const { data: announcements = [] } = useQuery({
     queryKey: ["announcements"],

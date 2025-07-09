@@ -3,6 +3,9 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const ManageCoupons = () => {
+   useEffect(() => {
+    document.title = "Manage Coupons | Thikana";
+  }, []);
   const [coupons, setCoupons] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
