@@ -1,12 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Megaphone } from "lucide-react";
+import useAuth from "../../../Hooks/useAuth";
 
 const UserAnnouncements = () => {
+  const {user}=useAuth()
   const { data: announcements = [] } = useQuery({
     queryKey: ["announcements"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:4000/announcements");
+      const res = await axios.get("http://localhost:4000/announcements",{
+  headers: {
+    Authorization: `Bearer ${user.accessToken}`,
+  },
+});
       return res.data;
     },
   });

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaUsers, FaDoorOpen, FaDoorClosed, FaUserShield, FaUserFriends, FaBuilding } from "react-icons/fa";
+import useAuth from "../../../Hooks/useAuth";
 
 const primaryColor = "#00aeff";
 
@@ -8,11 +9,15 @@ const AdminProfile = () => {
   const [admin, setAdmin] = useState(null);
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const{user}=useAuth()
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/admin/profile");
+        const res = await axios.get("http://localhost:4000/admin/profile",{
+  headers: {
+    Authorization: `Bearer ${user.accessToken}`,
+  },
+});
         setAdmin(res.data.admin);
         setStats(res.data.stats);
       } catch (err) {
