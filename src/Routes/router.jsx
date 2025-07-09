@@ -24,6 +24,7 @@ import AdminRoute from "../Provider/AdminRoute";
 import MemberRoute from "../Provider/MemberRoute";
 import UserRoute from "../Provider/UserRoute";
 import Forbidden from "../components/Forbidden";
+import PayNow from "../Pages/Dashboard/Member/Payment/PayNow";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -35,6 +36,7 @@ export const router = createBrowserRouter([
         path: "Apartments",
         element: <Apartments></Apartments>,
       },
+
        {
         path:"forbidden",
         Component:Forbidden
@@ -65,7 +67,10 @@ export const router = createBrowserRouter([
         Component:DashboardHome
       },
      
-   
+            {
+  path: "pay-now",
+  element: <MemberRoute><PayNow /></MemberRoute>,
+},
 
     // user
     { path: "profile", element: <UserRoute><UserProfile /></UserRoute> },
@@ -76,6 +81,7 @@ export const router = createBrowserRouter([
     { path: "payment-history", element: <MemberRoute><PaymentHistory /></MemberRoute> },
     { path: "MemberAnnouncements", element: <MemberRoute><MemberAnnouncements /></MemberRoute> },
     { path: "memberProfile", element: <MemberRoute><MemberProfile /></MemberRoute> },
+
 
     // Admin
     { path: "admin-profile", element: <AdminRoute><AdminProfile /></AdminRoute> },
