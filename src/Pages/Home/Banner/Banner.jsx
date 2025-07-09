@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -11,6 +12,8 @@ import slider3 from "../../../assets/t2.jpeg";
 import slider4 from "../../../assets/s1.jpeg";
 
 const Banner = () => {
+  const navigate = useNavigate();
+
   const slides = [
     {
       image: slider1,
@@ -18,6 +21,7 @@ const Banner = () => {
       description:
         "A smart way to manage your apartment, bills, and announcements in one place.",
       cta: "Explore Now",
+      route: "/dashboard",
     },
     {
       image: slider2,
@@ -25,6 +29,7 @@ const Banner = () => {
       description:
         "Browse available rooms with rent, block, and floor details — just a click away.",
       cta: "View Apartments",
+      route: "/Apartments",
     },
     {
       image: slider3,
@@ -32,6 +37,7 @@ const Banner = () => {
       description:
         "Track payments, apply coupons, and stay updated with announcements.",
       cta: "Go to Dashboard",
+      route: "/dashboard",
     },
     {
       image: slider4,
@@ -39,11 +45,12 @@ const Banner = () => {
       description:
         "Join Thikana to enjoy a well-managed and secure building environment.",
       cta: "Get Started",
+      route: "/auth/register",
     },
   ];
 
   return (
-    <div className="w-full h-[70vh] max-h-[800px] ">
+    <div className="w-full h-[70vh] max-h-[800px]">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         spaceBetween={0}
@@ -81,7 +88,10 @@ const Banner = () => {
                 <p className="text-lg sm:text-xl md:text-2xl mb-8 text-green-100">
                   {slide.description}
                 </p>
-                <button className="px-8 py-3 bg-[#00aeff] hover:bg-[#0090d1] text-white font-semibold rounded-lg transition-colors duration-300">
+                <button
+                  onClick={() => navigate(slide.route)}
+                  className="px-8 py-3 bg-[#00aeff] hover:bg-[#0090d1] text-white font-semibold rounded-lg transition-colors duration-300"
+                >
                   {slide.cta}
                 </button>
               </div>

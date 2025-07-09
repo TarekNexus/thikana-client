@@ -7,7 +7,7 @@ import {
   FaPhone,
 } from "react-icons/fa";
 import logo from "../../../assets/logo.png";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const Footer = () => {
   return (
@@ -17,7 +17,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Brand Info */}
           <div className="flex flex-col items-center md:items-start">
-            <img className="w-40 mb-4" src={logo} alt="Thikana Logo" />
+            <Link to="/">
+              <img className="w-40 mb-4" src={logo} alt="Thikana Logo" />
+            </Link>
             <p className="text-black text-opacity-90 text-center md:text-left mb-4">
               Thikana is your trusted building management system offering
               seamless apartment living with comfort, care, and community.
@@ -64,7 +66,7 @@ const Footer = () => {
               </li>
               <li>
                 <NavLink
-                  to="/AvailableFoods"
+                  to="/Apartments"
                   className={({ isActive }) =>
                     isActive
                       ? "text-[#00aeff] font-bold"
@@ -76,50 +78,26 @@ const Footer = () => {
               </li>
               <li>
                 <NavLink
-                  to="/AddFood"
+                  to="/dashboard"
                   className={({ isActive }) =>
                     isActive
                       ? "text-[#00aeff] font-bold"
                       : "hover:text-[#00aeff]"
                   }
                 >
-                  Add Listing
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/ManageMyFoods"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-[#00aeff] font-bold"
-                      : "hover:text-[#00aeff]"
-                  }
-                >
-                  Manage Apartments
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/MyFoodRequest"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-[#00aeff] font-bold"
-                      : "hover:text-[#00aeff]"
-                  }
-                >
-                  My Requests
+                  Dashboard
                 </NavLink>
               </li>
             </ul>
           </div>
 
           {/* Contact Info */}
-          <div className="flex flex-col items-center md:items-start">
+          <div className="flex flex-col items-center  md:items-start">
             <h3 className="text-lg font-semibold mb-4 text-[#00aeff] border-b border-[#00aeff] pb-2">
               Contact Us
             </h3>
-            <div className="space-y-3 text-black text-opacity-90">
-              <div className="flex items-center">
+            <div className="space-y-3 text-black text-opacity-90 text-center md:text-left ">
+              <div className="flex items-center justify-center md:justify-start ">
                 <FaEnvelope className="mr-2 text-[#00aeff]" />
                 <a
                   href="mailto:support@thikana.com"
@@ -128,7 +106,7 @@ const Footer = () => {
                   support@thikana.com
                 </a>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center justify-center md:justify-start">
                 <FaPhone className="mr-2 text-[#00aeff]" />
                 <a
                   href="tel:+8801778188448"
