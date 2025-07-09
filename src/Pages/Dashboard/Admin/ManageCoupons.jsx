@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const ManageCoupons = () => {
   const [coupons, setCoupons] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [editId, setEditId] = useState(null);
   const [formData, setFormData] = useState({
     code: "",
     discount: "",
@@ -31,6 +34,46 @@ const ManageCoupons = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const openEditModal = (coupon) => {
+    setIsEditMode(true);
+    setEditId(coupon._id);
+    setFormData({
+      code: coupon.code,
+      discount: coupon.discount,
+      description: coupon.description || "",
+    });
+    setModalOpen(true);
+  };
+
+  const handleDelete = async (id) => {
+    const confirm = await Swal.fire({
+      title: "Are you sure?",
+      text: "This coupon will be deleted permanently.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (!confirm.isConfirmed) return;
+
+    try {
+      await axios.delete(`http://localhost:4000/coupons/${id}`);
+      fetchCoupons();
+      Swal.fire({
+        icon: "success",
+        title: "Deleted!",
+        text: "Coupon has been deleted.",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+    } catch (err) {
+      console.error(err);
+      setError("Failed to delete coupon");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -40,17 +83,32 @@ const ManageCoupons = () => {
     }
     setLoading(true);
     try {
-      await axios.post("http://localhost:4000/coupons", {
-        code: formData.code.trim(),
-        discount: Number(formData.discount),
-        description: formData.description.trim(),
+      if (isEditMode) {
+        await axios.put(`http://localhost:4000/coupons/${editId}`, {
+          ...formData,
+        });
+      } else {
+        await axios.post("http://localhost:4000/coupons", {
+          ...formData,
+        });
+      }
+      Swal.fire({
+        icon: "success",
+        title: isEditMode ? "Coupon Updated!" : "Coupon Added!",
+        text: isEditMode
+          ? "The coupon was updated successfully."
+          : "A new coupon has been added.",
+        timer: 2000,
+        showConfirmButton: false,
       });
       setModalOpen(false);
       setFormData({ code: "", discount: "", description: "" });
+      setIsEditMode(false);
+      setEditId(null);
       fetchCoupons();
     } catch (err) {
-      console.log(err);
-      setError("Failed to add coupon");
+      console.error(err);
+      setError("Failed to save coupon");
     }
     setLoading(false);
   };
@@ -60,7 +118,11 @@ const ManageCoupons = () => {
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-semibold">Manage Coupons</h2>
         <button
-          onClick={() => setModalOpen(true)}
+          onClick={() => {
+            setIsEditMode(false);
+            setFormData({ code: "", discount: "", description: "" });
+            setModalOpen(true);
+          }}
           className="bg-[#00aeff] hover:bg-[#0099e6] text-white font-semibold px-4 py-2 rounded"
         >
           Add Coupon
@@ -76,12 +138,13 @@ const ManageCoupons = () => {
             <th className="py-2 px-4 border">Discount (%)</th>
             <th className="py-2 px-4 border">Description</th>
             <th className="py-2 px-4 border">Created At</th>
+            <th className="py-2 px-4 border">Actions</th>
           </tr>
         </thead>
         <tbody>
           {coupons.length === 0 ? (
             <tr>
-              <td colSpan="4" className="text-center py-4 text-gray-500">
+              <td colSpan="5" className="text-center py-4 text-gray-500">
                 No coupons found.
               </td>
             </tr>
@@ -94,6 +157,22 @@ const ManageCoupons = () => {
                 <td className="border py-2 px-4">
                   {new Date(createdAt).toLocaleDateString()}
                 </td>
+                <td className="border py-2 px-4 space-x-2">
+                  <button
+                    onClick={() =>
+                      openEditModal({ _id, code, discount, description })
+                    }
+                    className="text-white bg-green-500 px-3 py-1 rounded hover:bg-green-600"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(_id)}
+                    className="text-white bg-red-500 px-3 py-1 rounded hover:bg-red-600"
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))
           )}
@@ -101,9 +180,11 @@ const ManageCoupons = () => {
       </table>
 
       {modalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center  bg-opacity-40 backdrop-blur-sm z-50">
+        <div className="fixed inset-0 flex items-center justify-center  bg-opacity-30 backdrop-blur-sm z-50">
           <div className="bg-white rounded shadow-lg w-96 p-6 relative">
-            <h3 className="text-xl font-semibold mb-4">Add New Coupon</h3>
+            <h3 className="text-xl font-semibold mb-4">
+              {isEditMode ? "Update Coupon" : "Add New Coupon"}
+            </h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block mb-1 font-medium">Coupon Code *</label>
@@ -117,9 +198,7 @@ const ManageCoupons = () => {
                 />
               </div>
               <div>
-                <label className="block mb-1 font-medium">
-                  Discount Percentage *
-                </label>
+                <label className="block mb-1 font-medium">Discount Percentage *</label>
                 <input
                   type="number"
                   name="discount"
@@ -155,7 +234,7 @@ const ManageCoupons = () => {
                   disabled={loading}
                   className="bg-[#00aeff] text-white px-4 py-2 rounded hover:bg-[#0099e6] disabled:opacity-60"
                 >
-                  {loading ? "Saving..." : "Submit"}
+                  {loading ? "Saving..." : isEditMode ? "Update" : "Submit"}
                 </button>
               </div>
             </form>
