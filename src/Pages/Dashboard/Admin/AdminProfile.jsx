@@ -28,7 +28,7 @@ const AdminProfile = () => {
     };
 
     fetchAdminData();
-  }, []);
+  }, [user?.accessToken]);
 
   if (loading) {
     return <p className="text-center mt-20 text-gray-500 text-lg">Loading admin profile...</p>;
