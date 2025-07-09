@@ -1,4 +1,3 @@
-// src/pages/Dashboard/PayNow.jsx
 import React, { useEffect, useState } from "react";
 import {
   CardElement,
@@ -9,8 +8,9 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import Swal from "sweetalert2";
-import useAuth from "../../../../Hooks/useAuth";
 import useMyAgreement from "../../../../Hooks/useMyAgreement";
+import useAuth from "../../../../Hooks/useAuth";
+
 
 const stripePromise = loadStripe(import.meta.env.VITE_payment_key);
 const primaryColor = "#00aeff";
@@ -25,18 +25,22 @@ const PayForm = () => {
   const { agreement, loading } = useMyAgreement();
   const [month, setMonth] = useState("");
   const [clientSecret, setClientSecret] = useState("");
+  const [couponCode, setCouponCode] = useState("");
+  const [discountPercent, setDiscountPercent] = useState(0);
+  const [adjustedAmount, setAdjustedAmount] = useState(agreement ? agreement.rent : 0);
+  const [errorCoupon, setErrorCoupon] = useState("");
+  const [processing, setProcessing] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
-  const [processing, setProcessing] = useState(false);
 
-  // Generate next 12 months options for dropdown
+  // Generate month options (unchanged)
   const generateMonthOptions = () => {
     const options = [];
     const today = new Date();
 
     for (let i = 0; i < 12; i++) {
       const date = new Date(today.getFullYear(), today.getMonth() + i, 1);
-      const value = date.toISOString().slice(0, 7); // YYYY-MM
+      const value = date.toISOString().slice(0, 7);
       const label = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
       options.push({ value, label });
     }
@@ -45,7 +49,6 @@ const PayForm = () => {
 
   const monthOptions = generateMonthOptions();
 
-  // Format month value "YYYY-MM" to "MonthName Year" (e.g. "July 2025")
   const formatMonthLabel = (monthValue) => {
     if (!monthValue) return "";
     const [year, monthStr] = monthValue.split("-");
@@ -53,29 +56,73 @@ const PayForm = () => {
     return `${monthNames[monthIndex]} ${year}`;
   };
 
+  // Recalculate adjusted amount whenever discount or original rent changes
   useEffect(() => {
-    if (agreement?.rent && user?.email) {
+    if (agreement) {
+      const discountAmount = (agreement.rent * discountPercent) / 100;
+      setAdjustedAmount(Math.round(agreement.rent - discountAmount));
+    }
+  }, [discountPercent, agreement]);
+
+  // Create payment intent when adjustedAmount changes, user/email available, and month selected
+  useEffect(() => {
+    if (adjustedAmount > 0 && user?.email && month) {
       axios
         .post("http://localhost:4000/create-payment-intent", {
-          amount: agreement.rent,
+          amount: adjustedAmount,
           email: user.email,
         })
-        .then((res) => setClientSecret(res.data.clientSecret));
+        .then((res) => setClientSecret(res.data.clientSecret))
+        .catch(() => setClientSecret(""));
     }
-  }, [agreement, user]);
+  }, [adjustedAmount, user, month]);
 
-  // Save payment history to backend
+  const handleApplyCoupon = async () => {
+    setErrorCoupon("");
+    if (!couponCode.trim()) {
+      setErrorCoupon("Please enter a coupon code.");
+      return;
+    }
+    try {
+      // Fetch coupon from backend by code
+      const res = await axios.get(`http://localhost:4000/coupons?code=${couponCode.trim()}`);
+      const coupons = res.data;
+      if (!coupons || coupons.length === 0) {
+        setErrorCoupon("Invalid coupon code.");
+        setDiscountPercent(0);
+        return;
+      }
+      // Assume first matched coupon
+      const coupon = coupons[0];
+      setDiscountPercent(coupon.discount);
+      setErrorCoupon("");
+      Swal.fire({
+        icon: "success",
+        title: "Coupon Applied",
+        text: `You got ${coupon.discount}% off!`,
+        confirmButtonColor: primaryColor,
+      });
+    } catch (err) {
+      console.error(err);
+      setErrorCoupon("Failed to verify coupon.");
+      setDiscountPercent(0);
+    }
+  };
+
+  // Save payment history with applied discount and amount
   const savePaymentHistory = async (paymentIntentId) => {
     try {
       const paymentData = {
         userEmail: user.email,
-        amount: agreement.rent,
-        month: formatMonthLabel(month), // Save month as readable string
+        amount: adjustedAmount,
+        month: formatMonthLabel(month),
         paymentIntentId,
         apartmentNo: agreement.apartmentNo,
         blockName: agreement.blockName,
         floorNo: agreement.floorNo,
         paidAt: new Date(),
+        couponCode: discountPercent > 0 ? couponCode.trim() : null,
+        discountPercent: discountPercent > 0 ? discountPercent : null,
       };
 
       await axios.post("http://localhost:4000/payments", paymentData);
@@ -88,6 +135,11 @@ const PayForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) return;
+
+    if (!month) {
+      setErrorCoupon("Please select a month before payment.");
+      return;
+    }
 
     setProcessing(true);
 
@@ -120,7 +172,9 @@ const PayForm = () => {
       // Save payment history to DB
       await savePaymentHistory(result.paymentIntent.id);
 
-      setMonth(""); // reset month select if you want
+      setMonth("");
+      setCouponCode("");
+      setDiscountPercent(0);
     }
 
     setProcessing(false);
@@ -142,6 +196,7 @@ const PayForm = () => {
         Pay Your Rent
       </h2>
 
+      {/* Month Select */}
       <div>
         <label
           htmlFor="month"
@@ -168,6 +223,37 @@ const PayForm = () => {
         </select>
       </div>
 
+      {/* Coupon Input & Button */}
+      <div>
+        <label
+          htmlFor="couponCode"
+          className="block mb-2 text-sm font-medium text-gray-700"
+        >
+          Apply Coupon
+        </label>
+        <div className="flex gap-2">
+          <input
+            id="couponCode"
+            type="text"
+            placeholder="Enter coupon code"
+            className="flex-grow border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-0"
+            value={couponCode}
+            onChange={(e) => setCouponCode(e.target.value)}
+          />
+          <button
+            type="button"
+            onClick={handleApplyCoupon}
+            className="bg-[#00aeff] text-white px-4 rounded-md font-semibold hover:bg-[#0099e6] transition"
+          >
+            Apply
+          </button>
+        </div>
+        {errorCoupon && (
+          <p className="text-red-600 mt-1 text-sm font-medium">{errorCoupon}</p>
+        )}
+      </div>
+
+      {/* Card Details */}
       <div>
         <label
           htmlFor="card-element"
@@ -198,22 +284,39 @@ const PayForm = () => {
         </div>
       </div>
 
+      {/* Amount Summary */}
+      <div className="text-center font-semibold text-lg">
+        {discountPercent > 0 ? (
+          <>
+            Original Rent: <s>{agreement.rent} BDT</s> <br />
+            Discount: {discountPercent}% <br />
+            <span className="text-[#00aeff]">
+              Payable Amount: {adjustedAmount} BDT
+            </span>
+          </>
+        ) : (
+          <>
+            Amount to Pay: <span className="text-[#00aeff]">{adjustedAmount} BDT</span>
+          </>
+        )}
+      </div>
+
       <button
-  type="submit"
-  disabled={!stripe || processing || !clientSecret}
-  className="w-full py-3 rounded-md text-white font-semibold transition-colors duration-200"
-  style={{
-    backgroundColor: primaryColor,
-  }}
-  onMouseEnter={(e) => {
-    if (!processing) e.target.style.backgroundColor = "#0096e6";
-  }}
-  onMouseLeave={(e) => {
-    if (!processing) e.target.style.backgroundColor = primaryColor;
-  }}
->
-  {processing ? "Processing..." : "Pay"}
-</button>
+        type="submit"
+        disabled={!stripe || processing || !clientSecret || !month}
+        className="w-full py-3 rounded-md text-white font-semibold transition-colors duration-200"
+        style={{
+          backgroundColor: primaryColor,
+        }}
+        onMouseEnter={(e) => {
+          if (!processing) e.target.style.backgroundColor = "#0096e6";
+        }}
+        onMouseLeave={(e) => {
+          if (!processing) e.target.style.backgroundColor = primaryColor;
+        }}
+      >
+        {processing ? "Processing..." : "Pay"}
+      </button>
     </form>
   );
 };
