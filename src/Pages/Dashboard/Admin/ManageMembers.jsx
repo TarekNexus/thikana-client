@@ -14,7 +14,7 @@ const ManageMembers = () => {
   const { data = [], isLoading, error } = useQuery({
     queryKey: ["members"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:4000/agreements",{
+      const res = await axios.get("https://thikana-server.vercel.app/agreements",{
   headers: {
     Authorization: `Bearer ${user.accessToken}`,
   },
@@ -28,7 +28,7 @@ const ManageMembers = () => {
   const handleRemove = async (email) => {
     setLoadingEmail(email);
     try {
-      await axios.put(`http://localhost:4000/agreements/remove-member/${email}`);
+      await axios.put(`https://thikana-server.vercel.app/agreements/remove-member/${email}`);
       queryClient.invalidateQueries(["members"]);
     } catch (err) {
       console.error("Failed to remove member:", err);

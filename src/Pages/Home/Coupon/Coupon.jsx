@@ -24,7 +24,7 @@ const Coupon = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/coupons")
+      .get("https://thikana-server.vercel.app/coupons")
       .then((res) => setCoupons(res.data))
       .catch(() => setError("Failed to load coupons"));
   }, []);

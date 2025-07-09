@@ -68,7 +68,7 @@ const PayForm = () => {
   useEffect(() => {
     if (adjustedAmount > 0 && user?.email && month) {
       axios
-        .post("http://localhost:4000/create-payment-intent", {
+        .post("https://thikana-server.vercel.app/create-payment-intent", {
           amount: adjustedAmount,
           email: user.email,
         })
@@ -85,7 +85,7 @@ const PayForm = () => {
     }
     try {
       // Fetch coupon from backend by code
-      const res = await axios.get(`http://localhost:4000/coupons?code=${couponCode.trim()}`);
+      const res = await axios.get(`https://thikana-server.vercel.app/coupons?code=${couponCode.trim()}`);
       const coupons = res.data;
       if (!coupons || coupons.length === 0) {
         setErrorCoupon("Invalid coupon code.");
@@ -125,7 +125,7 @@ const PayForm = () => {
         discountPercent: discountPercent > 0 ? discountPercent : null,
       };
 
-      await axios.post("http://localhost:4000/payments", paymentData);
+      await axios.post("https://thikana-server.vercel.app/payments", paymentData);
       console.log("Payment history saved successfully.");
     } catch (error) {
       console.error("Failed to save payment history:", error);

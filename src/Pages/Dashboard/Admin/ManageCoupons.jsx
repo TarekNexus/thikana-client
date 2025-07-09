@@ -20,7 +20,7 @@ const ManageCoupons = () => {
 
   const fetchCoupons = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/coupons");
+      const res = await axios.get("https://thikana-server.vercel.app/coupons");
       setCoupons(res.data);
     } catch (err) {
       console.error(err);
@@ -62,7 +62,7 @@ const ManageCoupons = () => {
     if (!confirm.isConfirmed) return;
 
     try {
-      await axios.delete(`http://localhost:4000/coupons/${id}`);
+      await axios.delete(`https://thikana-server.vercel.app/coupons/${id}`);
       fetchCoupons();
       Swal.fire({
         icon: "success",
@@ -87,11 +87,11 @@ const ManageCoupons = () => {
     setLoading(true);
     try {
       if (isEditMode) {
-        await axios.put(`http://localhost:4000/coupons/${editId}`, {
+        await axios.put(`https://thikana-server.vercel.app/coupons/${editId}`, {
           ...formData,
         });
       } else {
-        await axios.post("http://localhost:4000/coupons", {
+        await axios.post("https://thikana-server.vercel.app/coupons", {
           ...formData,
         });
       }

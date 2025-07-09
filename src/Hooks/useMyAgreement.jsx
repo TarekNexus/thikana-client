@@ -9,7 +9,7 @@ const useMyAgreement = () => {
     queryKey: ['myAgreement', user?.email],
     enabled: !loading && !!user?.email,
     queryFn: async () => {
-      const res = await axios.get('http://localhost:4000/agreements',{
+      const res = await axios.get('https://thikana-server.vercel.app/agreements',{
   headers: {
     Authorization: `Bearer ${user.accessToken}`,
   },

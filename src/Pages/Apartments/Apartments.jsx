@@ -23,7 +23,7 @@ const Apartments = () => {
 
   const fetchApartments = async (customPage = page) => {
     try {
-      const res = await axios.get("http://localhost:4000/apartments", {
+      const res = await axios.get("https://thikana-server.vercel.app/apartments", {
         params: {
           page: customPage,
           minRent: minRent || 0,
@@ -60,7 +60,7 @@ const Apartments = () => {
     };
     try {
       const res = await axios.post(
-        "http://localhost:4000/agreements",
+        "https://thikana-server.vercel.app/agreements",
         agreementData
       );
 

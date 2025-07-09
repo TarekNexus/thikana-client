@@ -12,7 +12,7 @@ const UserAnnouncements = () => {
   const { data: announcements = [] } = useQuery({
     queryKey: ["announcements"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:4000/announcements",{
+      const res = await axios.get("https://thikana-server.vercel.app/announcements",{
   headers: {
     Authorization: `Bearer ${user.accessToken}`,
   },

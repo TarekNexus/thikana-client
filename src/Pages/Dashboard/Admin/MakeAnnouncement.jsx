@@ -20,7 +20,7 @@ const MakeAnnouncement = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:4000/announcements", formData);
+      await axios.post("https://thikana-server.vercel.app/announcements", formData);
 
       Swal.fire({
         icon: "success",

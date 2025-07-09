@@ -16,7 +16,7 @@ const AdminProfile = () => {
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/admin/profile",{
+        const res = await axios.get("https://thikana-server.vercel.app/admin/profile",{
   headers: {
     Authorization: `Bearer ${user.accessToken}`,
   },

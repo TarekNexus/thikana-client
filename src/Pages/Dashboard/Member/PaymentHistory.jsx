@@ -15,7 +15,7 @@ const PaymentHistory = () => {
     if (!user?.email) return;
 
     axios
-      .get(`http://localhost:4000/payments?email=${user.email}`,{
+      .get(`https://thikana-server.vercel.app/payments?email=${user.email}`,{
   headers: {
     Authorization: `Bearer ${user.accessToken}`,
   },
