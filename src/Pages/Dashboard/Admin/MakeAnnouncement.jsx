@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const MakeAnnouncement = () => {
   const [formData, setFormData] = useState({
@@ -18,44 +18,71 @@ const MakeAnnouncement = () => {
 
     try {
       await axios.post("http://localhost:4000/announcements", formData);
-      toast.success("Announcement created!");
+
+      Swal.fire({
+        icon: "success",
+        title: "Announcement Published!",
+        text: "Your announcement has been created successfully.",
+        confirmButtonColor: "#00aeff",
+      });
+
       setFormData({ title: "", description: "" });
     } catch (err) {
       console.error(err);
-      toast.error("Failed to create announcement");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Failed to create announcement!",
+        confirmButtonColor: "#00aeff",
+      });
     }
   };
 
   return (
-    <div className="max-w-xl mx-auto bg-white p-6 rounded shadow mt-10">
-      <h2 className="text-2xl font-bold mb-4">Create New Announcement</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="max-w-2xl mx-auto mt-14 px-6 py-8 bg-white shadow-xl rounded-2xl border border-blue-100">
+      <h2 className="text-3xl font-bold text-center mb-8 text-[#00aeff]">
+        📣 Create Announcement
+      </h2>
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Title Field */}
         <div>
-          <label className="font-medium">Title</label>
+          <label className="block mb-2 text-sm font-medium text-gray-700">
+            Title
+          </label>
           <input
             type="text"
             name="title"
-            className="input input-bordered w-full mt-1"
             value={formData.title}
             onChange={handleChange}
             required
+            className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#00aeff] transition"
+            placeholder="Enter announcement title"
           />
         </div>
 
+        {/* Description Field */}
         <div>
-          <label className="font-medium">Description</label>
+          <label className="block mb-2 text-sm font-medium text-gray-700">
+            Description
+          </label>
           <textarea
             name="description"
-            className="textarea textarea-bordered w-full mt-1"
             rows="5"
             value={formData.description}
             onChange={handleChange}
             required
+            className="w-full px-4 py-3 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-[#00aeff] transition"
+            placeholder="Write your announcement details here..."
           ></textarea>
         </div>
 
-        <button type="submit" className="btn btn-primary w-full">
-          Publish
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full py-3 bg-[#00aeff] hover:bg-[#0096e6] text-white font-semibold rounded-md transition duration-200 shadow-md"
+        >
+          📢 Publish Announcement
         </button>
       </form>
     </div>
