@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import useAuth from "../../../Hooks/useAuth";
 
 const ManageMembers = () => {
+  const {user}=useAuth()
   const queryClient = useQueryClient();
   const [loadingEmail, setLoadingEmail] = useState(null);
 
   const { data = [], isLoading, error } = useQuery({
     queryKey: ["members"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:4000/agreements");
+      const res = await axios.get("http://localhost:4000/agreements",{
+  headers: {
+    Authorization: `Bearer ${user.accessToken}`,
+  },
+});
       return res.data.filter(
         (item) => item.userRoll === "member" && item.status === "checked"
       );

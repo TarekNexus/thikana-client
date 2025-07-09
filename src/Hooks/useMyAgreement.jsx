@@ -9,7 +9,11 @@ const useMyAgreement = () => {
     queryKey: ['myAgreement', user?.email],
     enabled: !loading && !!user?.email,
     queryFn: async () => {
-      const res = await axios.get('http://localhost:4000/agreements');
+      const res = await axios.get('http://localhost:4000/agreements',{
+  headers: {
+    Authorization: `Bearer ${user.accessToken}`,
+  },
+});
       const all = res.data;
       const matched = all.find(
         (item) => item.userEmail === user.email && item.status === 'checked'

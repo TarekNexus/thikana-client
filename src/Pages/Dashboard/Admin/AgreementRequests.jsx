@@ -3,8 +3,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
+import useAuth from "../../../Hooks/useAuth";
 
 const AgreementRequests = () => {
+  const {user}=useAuth()
   const [loadingEmail, setLoadingEmail] = useState(null);
 
   const {
@@ -14,7 +16,11 @@ const AgreementRequests = () => {
   } = useQuery({
     queryKey: ["agreementRequests"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:4000/agreements");
+      const res = await axios.get("http://localhost:4000/agreements",{
+  headers: {
+    Authorization: `Bearer ${user.accessToken}`,
+  },
+});
       return res.data.filter((item) => item.status === "pending");
     },
   });

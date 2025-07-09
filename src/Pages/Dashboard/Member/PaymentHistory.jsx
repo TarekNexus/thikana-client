@@ -12,7 +12,11 @@ const PaymentHistory = () => {
     if (!user?.email) return;
 
     axios
-      .get(`http://localhost:4000/payments?email=${user.email}`)
+      .get(`http://localhost:4000/payments?email=${user.email}`,{
+  headers: {
+    Authorization: `Bearer ${user.accessToken}`,
+  },
+})
       .then((res) => setPayments(res.data))
       .catch((err) => console.error("Failed to fetch payments:", err))
       .finally(() => setLoading(false));
