@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { updateProfile } from "firebase/auth";
 import { AuthContext } from "../../Provider/AuthContext";
 // eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion"; // ✅ import motion
+import { motion } from "framer-motion";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
 
@@ -14,16 +14,33 @@ const Register = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleRegister = (e) => {
+  // ✅ SweetAlert Helper
+  const showSuccessAlert = (title, text) =>
+    Swal.fire({
+      icon: "success",
+      title,
+      text,
+      confirmButtonText: "Continue",
+      confirmButtonColor: "#00aeff",
+    });
+
+  // ✅ Toast Error Helper
+  const showErrorToast = (message) => toast.error(message);
+
+  useEffect(() => {
+    document.title = "Register | Thikana";
+  }, []);
+
+  const handleRegister = async (e) => {
     e.preventDefault();
     const form = e.target;
+    const name = form.name.value;
+    const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
-    const photo = form.photo.value;
-    const name = form.name.value;
 
     if (!name || !photo || !email || !password) {
-      toast.error("Please fill in all fields.");
+      showErrorToast("Please fill in all fields.");
       return;
     }
 
@@ -32,67 +49,57 @@ const Register = () => {
     const isLongEnough = password.length >= 6;
 
     if (!hasUppercase || !hasLowercase || !isLongEnough) {
-      toast.error(
+      showErrorToast(
         "Password must contain at least one uppercase letter, one lowercase letter, and be at least 6 characters long."
       );
       return;
     }
 
-    createUser(email, password)
-      .then((result) => {
-        const user = result.user;
-        updateProfile(user, {
-          displayName: name,
-          photoURL: photo,
-        })
-          .then(() => {
-            setUser({ ...user, displayName: name, photoURL: photo });
-            navigate(location.state ? location.state : "/");
-            Swal.fire({
-              icon: "success",
-              title: "Registration Complete!",
-              text: "You're account registered successfully!",
-              confirmButtonText: "Continue",
-              confirmButtonColor: "#00aeff",
-            });
-          })
-          .catch((error) => {
-            toast.error("Failed to update profile: " + error.message);
-          });
-      })
-      .catch((error) => {
-        toast.error(error.message);
+    try {
+      const result = await createUser(email, password);
+      const user = result.user;
+
+      await updateProfile(user, {
+        displayName: name,
+        photoURL: photo,
       });
+
+      setUser({ ...user, displayName: name, photoURL: photo });
+
+      showSuccessAlert(
+        "Registration Complete!",
+        "You're account registered successfully!"
+      );
+
+      navigate(location.state ? location.state : "/");
+    } catch (error) {
+      showErrorToast(error.message);
+    }
   };
 
-  const handleLoginWithGoogle = () => {
-    signInWithGoogle()
-      .then(() => {
-        Swal.fire({
-          icon: "success",
-          title: "Welcome!",
-          text: "You're now logged in with Google.",
-          showConfirmButton: true,
-          confirmButtonColor: "#00aeff",
-          confirmButtonText: "Let's Go!",
-        });
-        navigate(location.state ? location.state : "/");
-      })
-      .catch((error) => {
-        toast.error(error.message);
+  const handleLoginWithGoogle = async () => {
+    try {
+      await signInWithGoogle();
+      Swal.fire({
+        icon: "success",
+        title: "Welcome!",
+        text: "You're now logged in with Google.",
+        showConfirmButton: true,
+        confirmButtonColor: "#00aeff",
+        confirmButtonText: "Let's Go!",
       });
+      navigate(location.state ? location.state : "/");
+    } catch (error) {
+      showErrorToast(error.message);
+    }
   };
-
-    useEffect(() => {
-    document.title = "Register | Thikana";
-  }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-      {/* 🌈 Gradient background */}
-     <div className="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#00aeff_100%)]"></div>
+      {/* 🌈 Background Gradient */}
+      <div className="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#00aeff_100%)]"></div>
 
-      {/* 🎯 Animated card */}
+      {/* 🎯 Form Card */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9, y: 50 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -118,38 +125,35 @@ const Register = () => {
             <div className="space-y-4">
               <motion.input
                 whileFocus={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
                 name="name"
                 type="text"
                 placeholder="Enter your name"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-[#00aeff]"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#00aeff]"
               />
               <motion.input
                 whileFocus={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
                 name="photo"
                 type="text"
                 placeholder="Enter your Photo URL"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-[#00aeff]"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#00aeff]"
               />
               <motion.input
                 whileFocus={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
                 name="email"
                 type="email"
                 placeholder="Email"
                 autoComplete="username"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-[#00aeff]"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#00aeff]"
               />
 
-              {/* Password input */}
+              {/* 🔐 Password Field */}
               <div className="relative">
                 <input
                   name="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   autoComplete="new-password"
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-none focus:ring-2  focus:ring-[#00aeff]"
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#00aeff]"
                 />
                 <span
                   onClick={() => setShowPassword(!showPassword)}
@@ -163,6 +167,7 @@ const Register = () => {
                 </span>
               </div>
 
+              {/* 📝 Register Button */}
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
@@ -172,7 +177,7 @@ const Register = () => {
                 Register
               </motion.button>
 
-              {/* Google button */}
+              {/* 🔑 Google Sign In */}
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}

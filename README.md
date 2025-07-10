@@ -6,7 +6,7 @@
 
 ## 🔗 Live Links
 
-🌐 **Live Site:** https://your-thikana-client.netlify.app  
+🌐 **Live Site:** https://thikana.netlify.app  
 💻 **Backend Repo:** https://github.com/Programming-Hero-Web-Course4/b11a12-server-side-TarekNexus 
 
 
