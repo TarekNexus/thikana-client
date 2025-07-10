@@ -43,7 +43,7 @@ const MakeAnnouncement = () => {
 
   return (
     <div className="max-w-2xl mx-auto mt-14 px-6 py-8 bg-white shadow-xl rounded-2xl border border-blue-100">
-      <h2 className="text-3xl font-bold text-center mb-8 text-[#00aeff]">
+      <h2 className="text-xl md:text-3xl font-bold text-center mb-8 text-[#00aeff]">
         📣 Create Announcement
       </h2>
 

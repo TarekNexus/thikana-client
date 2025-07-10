@@ -7,7 +7,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Apartments = () => {
-
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -39,8 +38,12 @@ const Apartments = () => {
   };
 
   useEffect(() => {
-    fetchApartments(); // Initial load
-  }, [page]); // Only fetch on page change
+    fetchApartments();
+  }, [page]);
+
+  useEffect(() => {
+    document.title = "Apartment | Thikana";
+  }, []);
 
   const handleAgreement = async (apartment) => {
     if (!user) {
@@ -58,6 +61,7 @@ const Apartments = () => {
       rent: apartment.rent,
       userImage: user.photoURL || "",
     };
+
     try {
       const res = await axios.post(
         "https://thikana-server.vercel.app/agreements",
@@ -79,20 +83,19 @@ const Apartments = () => {
       );
     }
   };
- useEffect(() => {
-    document.title = "Apartment | Thikana";
-  }, []);
 
   return (
     <div className="w-11/12 mx-auto p-4">
-      <h1 className="text-3xl font-semibold mb-4 text-[#00aeff]">Apartments</h1>
+      <h1 className="text-2xl sm:text-3xl font-semibold mb-4 text-[#00aeff]">
+        Apartments
+      </h1>
 
       {/* Rent Filter */}
-      <div className="mb-4 flex gap-2 items-center">
+      <div className="mb-6 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
         <input
           type="number"
           placeholder="Min Rent"
-          className="border p-2 rounded"
+          className="border p-2 rounded w-full sm:w-40"
           value={minRent}
           onChange={(e) => setMinRent(e.target.value)}
           min={0}
@@ -100,7 +103,7 @@ const Apartments = () => {
         <input
           type="number"
           placeholder="Max Rent"
-          className="border p-2 rounded"
+          className="border p-2 rounded w-full sm:w-40"
           value={maxRent}
           onChange={(e) => setMaxRent(e.target.value)}
           min={0}
@@ -108,11 +111,11 @@ const Apartments = () => {
         <button
           onClick={() => {
             setPage(1);
-            fetchApartments(1); // Force fetch for page 1
+            fetchApartments(1);
             setMinRent("");
             setMaxRent("");
           }}
-          className="bg-[#00aeff] text-white px-4 py-2 rounded hover:bg-[#0090d1] transition"
+          className="bg-[#00aeff] text-white px-4 py-2 rounded hover:bg-[#0090d1] transition w-full sm:w-auto"
         >
           Search
         </button>
@@ -124,18 +127,18 @@ const Apartments = () => {
           No apartments found.
         </p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {apartments.map((apt) => (
             <div
               key={apt._id}
-              className="border rounded p-4 shadow hover:shadow-lg transition"
+              className="border rounded p-4 shadow hover:shadow-lg transition flex flex-col"
             >
               <img
                 src={apt.image}
                 alt={`Apartment ${apt.apartmentNo}`}
-                className="w-full h-48 object-cover rounded"
+                className="w-full h-48 object-cover rounded mb-3"
               />
-              <h2 className="text-xl font-bold mt-2 text-[#00aeff]">
+              <h2 className="text-xl font-bold text-[#00aeff]">
                 Apartment No: {apt.apartmentNo}
               </h2>
               <p>Floor: {apt.floor}</p>
@@ -159,7 +162,7 @@ const Apartments = () => {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex justify-center gap-4 mt-6">
+        <div className="flex flex-wrap justify-center gap-3 mt-8">
           <button
             disabled={page === 1}
             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
@@ -172,7 +175,9 @@ const Apartments = () => {
             <button
               key={idx + 1}
               className={`px-3 py-1 border rounded ${
-                page === idx + 1 ? "bg-[#00aeff] text-white" : "text-[#00aeff]"
+                page === idx + 1
+                  ? "bg-[#00aeff] text-white"
+                  : "text-[#00aeff]"
               } hover:bg-[#0090d1] hover:text-white transition`}
               onClick={() => setPage(idx + 1)}
             >
@@ -190,7 +195,6 @@ const Apartments = () => {
         </div>
       )}
 
-      {/* Toast Container */}
       <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );

@@ -3,9 +3,10 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const ManageCoupons = () => {
-   useEffect(() => {
+  useEffect(() => {
     document.title = "Manage Coupons | Thikana";
   }, []);
+
   const [coupons, setCoupons] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -117,8 +118,8 @@ const ManageCoupons = () => {
   };
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-4">
+    <div className="p-4 sm:p-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4">
         <h2 className="text-2xl font-semibold">Manage Coupons</h2>
         <button
           onClick={() => {
@@ -126,7 +127,7 @@ const ManageCoupons = () => {
             setFormData({ code: "", discount: "", description: "" });
             setModalOpen(true);
           }}
-          className="bg-[#00aeff] hover:bg-[#0099e6] text-white font-semibold px-4 py-2 rounded"
+          className="bg-[#00aeff] hover:bg-[#0099e6] text-white font-semibold px-4 py-2 rounded w-full sm:w-auto"
         >
           Add Coupon
         </button>
@@ -134,57 +135,59 @@ const ManageCoupons = () => {
 
       {error && <p className="mb-2 text-red-600">{error}</p>}
 
-      <table className="min-w-full bg-white border border-gray-300 rounded shadow">
-        <thead>
-          <tr className="bg-[#00aeff] text-white">
-            <th className="py-2 px-4 border">Coupon Code</th>
-            <th className="py-2 px-4 border">Discount (%)</th>
-            <th className="py-2 px-4 border">Description</th>
-            <th className="py-2 px-4 border">Created At</th>
-            <th className="py-2 px-4 border">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {coupons.length === 0 ? (
-            <tr>
-              <td colSpan="5" className="text-center py-4 text-gray-500">
-                No coupons found.
-              </td>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white border border-gray-300 rounded shadow text-sm sm:text-base">
+          <thead>
+            <tr className="bg-[#00aeff] text-white">
+              <th className="py-2 px-4 border whitespace-nowrap">Coupon Code</th>
+              <th className="py-2 px-4 border whitespace-nowrap">Discount (%)</th>
+              <th className="py-2 px-4 border whitespace-nowrap">Description</th>
+              <th className="py-2 px-4 border whitespace-nowrap">Created At</th>
+              <th className="py-2 px-4 border whitespace-nowrap">Actions</th>
             </tr>
-          ) : (
-            coupons.map(({ _id, code, discount, description, createdAt }) => (
-              <tr key={_id} className="even:bg-gray-50">
-                <td className="border py-2 px-4">{code}</td>
-                <td className="border py-2 px-4">{discount}</td>
-                <td className="border py-2 px-4">{description || "-"}</td>
-                <td className="border py-2 px-4">
-                  {new Date(createdAt).toLocaleDateString()}
-                </td>
-                <td className="border py-2 px-4 space-x-2">
-                  <button
-                    onClick={() =>
-                      openEditModal({ _id, code, discount, description })
-                    }
-                    className="text-white bg-green-500 px-3 py-1 rounded hover:bg-green-600"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(_id)}
-                    className="text-white bg-red-500 px-3 py-1 rounded hover:bg-red-600"
-                  >
-                    Delete
-                  </button>
+          </thead>
+          <tbody>
+            {coupons.length === 0 ? (
+              <tr>
+                <td colSpan="5" className="text-center py-4 text-gray-500">
+                  No coupons found.
                 </td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            ) : (
+              coupons.map(({ _id, code, discount, description, createdAt }) => (
+                <tr key={_id} className="even:bg-gray-50">
+                  <td className="border py-2 px-4">{code}</td>
+                  <td className="border py-2 px-4">{discount}</td>
+                  <td className="border py-2 px-4">{description || "-"}</td>
+                  <td className="border py-2 px-4">
+                    {new Date(createdAt).toLocaleDateString()}
+                  </td>
+                  <td className="border py-2 px-4 space-y-1 sm:space-y-0 sm:space-x-2">
+                    <button
+                      onClick={() =>
+                        openEditModal({ _id, code, discount, description })
+                      }
+                      className="text-white bg-green-500 px-3 py-1 rounded hover:bg-green-600 block sm:inline"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(_id)}
+                      className="text-white bg-red-500 px-3 py-1 rounded hover:bg-red-600 block sm:inline"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
 
       {modalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center  bg-opacity-30 backdrop-blur-sm z-50">
-          <div className="bg-white rounded shadow-lg w-96 p-6 relative">
+        <div className="fixed inset-0 flex items-center justify-center px-4 bg-black/30 backdrop-blur-sm z-50">
+          <div className="bg-white rounded shadow-lg w-full max-w-md p-6 relative">
             <h3 className="text-xl font-semibold mb-4">
               {isEditMode ? "Update Coupon" : "Add New Coupon"}
             </h3>
@@ -201,7 +204,9 @@ const ManageCoupons = () => {
                 />
               </div>
               <div>
-                <label className="block mb-1 font-medium">Discount Percentage *</label>
+                <label className="block mb-1 font-medium">
+                  Discount Percentage *
+                </label>
                 <input
                   type="number"
                   name="discount"
@@ -224,7 +229,7 @@ const ManageCoupons = () => {
                 ></textarea>
               </div>
               {error && <p className="text-red-600">{error}</p>}
-              <div className="flex justify-end space-x-2">
+              <div className="flex justify-end flex-wrap gap-2">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}

@@ -5,24 +5,27 @@ import useAuth from "../../../Hooks/useAuth";
 import { useEffect } from "react";
 
 const UserAnnouncements = () => {
-     useEffect(() => {
+  useEffect(() => {
     document.title = "Announcements | Thikana";
   }, []);
-  const {user}=useAuth()
+  const { user } = useAuth();
   const { data: announcements = [] } = useQuery({
     queryKey: ["announcements"],
     queryFn: async () => {
-      const res = await axios.get("https://thikana-server.vercel.app/announcements",{
-  headers: {
-    Authorization: `Bearer ${user.accessToken}`,
-  },
-});
+      const res = await axios.get(
+        "https://thikana-server.vercel.app/announcements",
+        {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        }
+      );
       return res.data;
     },
   });
 
   return (
-    <div className="py-16 px-4 sm:px-6 lg:px-8">
+    <div className="py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <div className="flex justify-center mb-4">
@@ -37,7 +40,9 @@ const UserAnnouncements = () => {
         </div>
 
         {announcements.length === 0 ? (
-          <p className="text-center text-gray-500">No announcements available.</p>
+          <p className="text-center text-gray-500 text-base sm:text-lg">
+            No announcements available.
+          </p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {announcements.map((a, index) => (
