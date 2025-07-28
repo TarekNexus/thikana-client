@@ -103,7 +103,7 @@
 ### 1️⃣ Clone the repositories
 
 ```bash
-git clone https://github.com/Programming-Hero-Web-Course4/b11a12-client-side-TarekNexus
+git clone https://github.com/TarekNexus/thikana-client
 git clone https://github.com/TarekNexus/thikana-server
 
 
