@@ -7,7 +7,7 @@
 ## 🔗 Live Links
 
 🌐 **Live Site:** https://thikana.netlify.app  
-💻 **Backend Repo:** https://github.com/Programming-Hero-Web-Course4/b11a12-server-side-TarekNexus 
+💻 **Backend Repo:** https://github.com/TarekNexus/thikana-server
 
 
 > ⚠️ Replace the above links with your actual URLs.
@@ -104,7 +104,7 @@
 
 ```bash
 git clone https://github.com/Programming-Hero-Web-Course4/b11a12-client-side-TarekNexus
-git clone https://github.com/Programming-Hero-Web-Course4/b11a12-server-side-TarekNexus
+git clone https://github.com/TarekNexus/thikana-server
 
 
 - **Install dependencies:**
