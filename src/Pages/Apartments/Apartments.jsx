@@ -17,7 +17,7 @@ const Apartments = () => {
   const [maxRent, setMaxRent] = useState("");
   const [disabledButtons, setDisabledButtons] = useState({});
 
-  const limit = 6;
+  const limit = 6;   
   const totalPages = Math.ceil(totalCount / limit);
 
   const fetchApartments = async (customPage = page) => {
@@ -90,7 +90,7 @@ const Apartments = () => {
         Apartments
       </h1>
 
-      {/* Rent Filter */}
+      {/* Rent Filter     */}
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
         <input
           type="number"
@@ -99,7 +99,7 @@ const Apartments = () => {
           value={minRent}
           onChange={(e) => setMinRent(e.target.value)}
           min={0}
-        />
+        />    
         <input
           type="number"
           placeholder="Max Rent"
@@ -117,14 +117,14 @@ const Apartments = () => {
           }}
           className="bg-[#00aeff] text-white px-4 py-2 rounded hover:bg-[#0090d1] transition w-full sm:w-auto"
         >
-          Search
+          Search   
         </button>
       </div>
 
       {/* Apartments Grid */}
       {apartments.length === 0 ? (
         <p className="text-center text-gray-500 text-lg mt-8">
-          No apartments found.
+          No apartments found .
         </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -190,7 +190,7 @@ const Apartments = () => {
             onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
             className="px-3 py-1 border rounded disabled:opacity-50 border-[#00aeff] text-[#00aeff] hover:bg-[#0090d1] hover:text-white transition"
           >
-            Next
+            Next 
           </button>
         </div>
       )}
