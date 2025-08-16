@@ -5,6 +5,9 @@ import ApartmentLocation from '../ApartmentLocation/ApartmentLocation';
 import Coupon from '../Coupon/Coupon';
 import FAQ from '../../../components/FAQ';
 import WhatsComing from '../../../components/WhatsComing';
+import HowItWorks from '../../../components/HowItWorks';
+import StatsSection from '../../../components/StatsSection';
+
 
 
 const Home = () => {
@@ -16,9 +19,11 @@ const Home = () => {
             <Banner></Banner>
             <AboutBuilding></AboutBuilding>
             <Coupon></Coupon>
+           <StatsSection></StatsSection>
             <WhatsComing></WhatsComing>
             <ApartmentLocation></ApartmentLocation>
             <FAQ></FAQ>
+            <HowItWorks></HowItWorks>
             
         </div>
     );
