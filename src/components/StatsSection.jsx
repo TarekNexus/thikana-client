@@ -16,7 +16,7 @@ const StatsSection = () => {
       <div className="text-center mb-12">
         <h2 className="text-3xl font-bold text-[#00aeff] mb-2">Our Users Love Thikana</h2>
         <p className="text-gray-500 text-sm md:text-base">
-          Here’s a quick look at the impact Thikana has made for tenants and owners.
+          Here`s a quick look at the impact Thikana has made for tenants and owners.
         </p>
       </div>
 
