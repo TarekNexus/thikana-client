@@ -37,7 +37,7 @@ const ErrorPage = ({ code = 404, message = "Oops! The page you’re looking for 
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 0.6 }}
       >
-        {message} <br /> Maybe try checking the URL or head back home.
+        {message} <br />Maybe try checking the URL or head back home .
       </motion.p>
 
       <motion.div
